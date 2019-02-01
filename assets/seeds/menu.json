@@ -1,0 +1,38 @@
+[
+  {
+    "title": "火腿堡",
+    "price": 35.0,
+    "type": {
+      "id": 1,
+      "title": "餐點",
+      "value": "foods"
+    }
+  },
+  {
+    "title": "香雞堡",
+    "price": 40.0,
+    "type": {
+      "id": 1,
+      "title": "餐點",
+      "value": "foods"
+    }
+  },
+  {
+    "title": "鮮奶茶",
+    "price": 30.0,
+    "type": {
+      "id": 2,
+      "title": "飲料",
+      "value": "drinks"
+    }
+  },
+  {
+    "title": "咖啡",
+    "price": 35.0,
+    "type": {
+      "id": 2,
+      "title": "飲料",
+      "value": "drinks"
+    }
+  }
+]

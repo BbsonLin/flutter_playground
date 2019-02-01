@@ -1,0 +1,17 @@
+[
+  {
+    "id": 0,
+    "title": "全部",
+    "value": "all"
+  },
+  {
+    "id": 1,
+    "title": "餐點",
+    "value": "foods"
+  },
+  {
+    "id": 2,
+    "title": "飲料",
+    "value": "drinks"
+  }
+]

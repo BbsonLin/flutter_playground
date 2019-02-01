@@ -49,6 +49,16 @@ flutter:
    - assets/images/ehmir-bautista-364387.jpg
    - assets/images/greg-rakozy-38802.jpg
    - assets/images/averie-woodard-111822.jpg
+   - assets/images/playground/maksym-kaharlytskyi.jpg
+   - assets/images/playground/mark-seletcky.jpg
+   - assets/images/playground/raychan.jpg
+   - assets/images/coffee_shop/jeremy-yap.jpg
+   - assets/images/coffee_shop/kim-s-ly.jpg
+   - assets/images/coffee_shop/mike-kenneally.jpg
+   - assets/images/coffee_shop/clem-onojeghuo.jpg
+   - assets/images/coffee_shop/nathan-dumlao.jpg
+   - assets/seeds/menu.json
+   - assets/seeds/menu_type.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
