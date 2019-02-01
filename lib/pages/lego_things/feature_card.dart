@@ -4,9 +4,15 @@ class FeatureCard extends StatelessWidget {
   final String title;
   final Image bgImage;
   final Function onTap;
+  final Function onLongPress;
 
-  const FeatureCard({Key key, this.title, this.bgImage, this.onTap,})
-      : super(key: key);
+  const FeatureCard({
+    Key key,
+    this.title,
+    this.bgImage,
+    this.onTap,
+    this.onLongPress,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +42,7 @@ class FeatureCard extends StatelessWidget {
               type: MaterialType.transparency,
               child: InkWell(
                 onTap: onTap,
+                onLongPress: onLongPress,
               ),
             ),
           )

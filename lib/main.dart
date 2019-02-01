@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_playground/pages/lego_things/feature_card.dart';
 import 'package:flutter_playground/pages/lego_things/main.dart';
 import 'package:flutter_playground/pages/masterpieces/main.dart';
@@ -7,70 +8,85 @@ import 'package:logging/logging.dart';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_playground/pages/toys/swiper_image.dart';
-import 'package:flutter_playground/pages/toys/animation_example.dart';
-import 'package:flutter_playground/pages/toys/stagger_animation.dart';
-import 'package:flutter_playground/pages/toys/add_to_cart.dart';
-import 'package:flutter_playground/pages/masterpieces/coffee_shop/main.dart';
-import 'package:flutter_playground/pages/toys/custom_action_button.dart';
-import 'package:flutter_playground/router.dart';
-import 'package:flutter_playground/router.internal.dart';
-
 void main() {
+  SystemChrome.setEnabledSystemUIOverlays([]);
   Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen((LogRecord rec) {
     print('${rec.level.name}: ${rec.time}: ${rec.message}');
   });
   runApp(
     MaterialApp(
-        title: 'Flutter Playground',
-//        home: HomePage(),
-        theme: ThemeData(
-          primaryColor: Colors.deepPurpleAccent,
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Playground',
+      theme: ThemeData(
+          primaryColor: Colors.white,
           buttonColor: Colors.deepPurple,
           buttonTheme: ButtonThemeData(
             textTheme: ButtonTextTheme.primary,
             buttonColor: Colors.deepPurple,
           ),
-        ),
-        routes: {
-          PlaygroundRoutes.home: (context) => HomePage(),
-          PlaygroundRoutes.legoThings: (context) => LegoThingsPage(),
-          PlaygroundRoutes.toys: (context) => ToysPage(),
-          PlaygroundRoutes.masterpieces: (context) => MasterpiecesPage(),
-        }),
+          bottomAppBarColor: Colors.deepPurple,
+          inputDecorationTheme:
+              InputDecorationTheme(fillColor: Colors.deepPurple)),
+      routes: {
+        PlaygroundRoutes.home: (context) => HomePage(),
+        PlaygroundRoutes.legoThings: (context) => LegoThingsPage(),
+        PlaygroundRoutes.toys: (context) => ToysPage(),
+        PlaygroundRoutes.masterpieces: (context) => MasterpiecesPage(),
+      },
+    ),
   );
 }
 
 class HomePage extends StatelessWidget {
-  final router = Router();
   final List<Map> elements = [
-    {"name": "Lego Things", "routeTo": "/lego-things", "img": "https://bit.ly/2HnmE4n"},
-    {"name": "Toys", "routeTo": "/toys", "img": "https://bit.ly/2FFqO62"},
-    {"name": "Masterpieces", "routeTo": "/masterpieces", "img": "https://bit.ly/2sCwtRN"}
+    {
+      "name": "Lego Things",
+      "routeTo": "/lego-things",
+      "img": "assets/images/playground/mark-seletcky.jpg"
+    },
+    {
+      "name": "Toys",
+      "routeTo": "/toys",
+      "img": "assets/images/playground/maksym-kaharlytskyi.jpg"
+    },
+    {
+      "name": "Masterpieces",
+      "routeTo": "/masterpieces",
+      "img": "assets/images/playground/raychan.jpg"
+    }
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Flutter Playground"),
-      ),
       body: Container(
-        child: ListView.builder(
-          itemCount: 3,
-          padding: EdgeInsets.only(top: 8.0),
-          itemBuilder: (context, index) {
-            return FeatureCard(
-              title: elements[index]["name"],
-              bgImage: Image.network(
-                elements[index]["img"],
-                fit: BoxFit.cover,
+        child: Column(
+          children: <Widget>[
+            SizedBox(
+              height: kToolbarHeight,
+              child: AppBar(
+                title: Text("Flutter Playground"),
               ),
-              onTap: () =>
-                  Navigator.pushNamed(context, elements[index]["routeTo"]),
-            );
-          },
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 3,
+                padding: EdgeInsets.only(top: 8.0),
+                itemBuilder: (context, index) {
+                  return FeatureCard(
+                    title: elements[index]["name"],
+                    bgImage: Image.asset(
+                      elements[index]["img"],
+                      fit: BoxFit.cover,
+                    ),
+                    onTap: () => Navigator.pushNamed(
+                        context, elements[index]["routeTo"]),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
         /*
         ListView(
