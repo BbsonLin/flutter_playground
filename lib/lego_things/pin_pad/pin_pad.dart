@@ -4,15 +4,18 @@ import 'key_pad.dart';
 
 class PinPad extends StatefulWidget {
   final Widget title;
-  final Widget display;
   final EdgeInsetsGeometry padding;
-  final Function onComplete;
+  final bool pinVisible;
+  final bool randomKeys;
+  final Function(String) onComplete;
 
   const PinPad({
     Key key,
     this.title = const Text("Enter Pin"),
-    this.display = const TextField(),
-    this.padding, this.onComplete,
+    this.padding,
+    this.pinVisible = true,
+    this.randomKeys = true,
+    this.onComplete,
   }) : super(key: key);
 
   @override
@@ -22,11 +25,12 @@ class PinPad extends StatefulWidget {
 class PinPadState extends State<PinPad> {
   List<int> _numberSet;
   String _input = "";
+  Widget display;
 
   @override
   void initState() {
     super.initState();
-    _numberSet = _genRandomNumberSet();
+    _numberSet = _genNumberSet();
   }
 
   @override
@@ -36,23 +40,25 @@ class PinPadState extends State<PinPad> {
       child: Column(
         children: <Widget>[
           widget.title,
-//          widget.display,
+          PinDisplay(
+            displayText: _input,
+            displayTextVisible: widget.pinVisible,
+          ),
           KeyPad(
             numbers: _numberSet,
             onInsert: _insert,
             onClear: _clear,
             onRevert: _revert,
-            onComplete: widget.onComplete,
+            onComplete: () => widget.onComplete(_input),
           ),
         ],
       ),
     );
   }
 
-  _genRandomNumberSet() {
-    var list = List<int>.generate(10, (int index) => index); // [0, 1, 4]
-    list.shuffle();
-    print(list);
+  _genNumberSet() {
+    var list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+    if (widget.randomKeys) list.shuffle();
     return list;
   }
 
@@ -80,12 +86,27 @@ class PinPadState extends State<PinPad> {
 }
 
 class PinDisplay extends StatelessWidget {
-  final displayController = TextEditingController();
+  final String displayText;
+  final bool displayTextVisible;
+
+  PinDisplay({this.displayText = "", this.displayTextVisible});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: TextField(controller: displayController, obscureText: true),
+      margin: EdgeInsets.symmetric(vertical: 32.0),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
+      ),
+      width: MediaQuery.of(context).size.width * 2 / 3,
+      height: 56.0,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: displayText.split("").map((t) {
+          return Text(displayTextVisible ? t.toString() : "*",
+              style: Theme.of(context).textTheme.title);
+        }).toList(),
+      ),
     );
   }
 }

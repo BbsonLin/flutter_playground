@@ -34,9 +34,7 @@ class KeyPad extends StatelessWidget {
         children: inputs
             .map((value) => MaterialButton(
           child: Text(value.toString()),
-          onPressed: () {
-            onInsert(value.toString());
-          },
+          onPressed: () => onInsert(value.toString()),
         ))
             .toList(),
       ),
@@ -57,7 +55,7 @@ class KeyPad extends StatelessWidget {
           ),
           MaterialButton(
             child: Text(numbers.last.toString()),
-            onPressed: () => {},
+            onPressed: () => onInsert(numbers.last.toString()),
           ),
           MaterialButton(
             child: Icon(Icons.send),
