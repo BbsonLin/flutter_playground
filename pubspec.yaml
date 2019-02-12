@@ -7,19 +7,12 @@ description: A new Flutter project.
 # Both the version and the builder number may be overridden in flutter
 # build by specifying --build-name and --build-number, respectively.
 # Read more about versioning at semver.org.
-version: 1.0.0+1
+version: 0.1.0
 
 environment:
   sdk: ">=2.0.0-dev.58.0 <3.0.0"
 
 dependencies:
-  badge: any
-  flutter_swiper: ^1.1.4
-  path_provider: any
-  random_pk: any
-  flutter_counter: ^1.0.3
-  url_launcher: ^5.0.0
-
   flutter:
     sdk: flutter
 
@@ -27,11 +20,19 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
 
-dev_dependencies:
-  logging: ^0.11.3+2
+  badge: any
+  flutter_swiper: ^1.1.4
+  path_provider: any
+  random_pk: any
+  flutter_counter: ^1.0.3
+  url_launcher: ^5.0.0
+  intl: ^0.15.7
 
+dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  logging: ^0.11.3+2
 
 
 # For information on the generic Dart part of this file, see the
