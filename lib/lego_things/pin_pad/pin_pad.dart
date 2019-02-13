@@ -25,7 +25,6 @@ class PinPad extends StatefulWidget {
 class PinPadState extends State<PinPad> {
   List<int> _numberSet;
   String _input = "";
-  Widget display;
 
   @override
   void initState() {
@@ -103,8 +102,10 @@ class PinDisplay extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: displayText.split("").map((t) {
-          return Text(displayTextVisible ? t.toString() : "*",
-              style: Theme.of(context).textTheme.title);
+          return Text(
+            displayTextVisible ? t.toString() : "*",
+            style: Theme.of(context).textTheme.title,
+          );
         }).toList(),
       ),
     );

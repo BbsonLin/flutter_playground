@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
-import 'package:flutter_playground/pages/lego_things/feature_card.dart';
-import 'package:flutter_playground/pages/lego_things/main.dart';
+import 'package:flutter_playground/lego_things/main.dart';
+import 'package:flutter_playground/pages/lego_things/app.dart';
 import 'package:flutter_playground/pages/masterpieces/main.dart';
 import 'package:flutter_playground/pages/toys/main.dart';
 import 'package:flutter_playground/routes.dart';
@@ -19,18 +19,11 @@ void main() {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Playground',
       theme: ThemeData(
-          primaryColor: Colors.white,
-          buttonColor: Colors.deepPurple,
-          buttonTheme: ButtonThemeData(
-            textTheme: ButtonTextTheme.primary,
-            buttonColor: Colors.deepPurple,
-          ),
-          bottomAppBarColor: Colors.deepPurple,
-          inputDecorationTheme:
-              InputDecorationTheme(fillColor: Colors.deepPurple)),
+        primaryColor: Colors.white,
+      ),
       routes: {
         PlaygroundRoutes.home: (context) => HomePage(),
-        PlaygroundRoutes.legoThings: (context) => LegoThingsPage(),
+        PlaygroundRoutes.legoThings: (context) => LegoThingsExample(),
         PlaygroundRoutes.toys: (context) => ToysPage(),
         PlaygroundRoutes.masterpieces: (context) => MasterpiecesPage(),
       },
@@ -88,57 +81,6 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
-        /*
-        ListView(
-          children: <Widget>[
-            ListTile(
-              title: Text("Lego Things"),
-              onTap: () => Navigator.pushNamed(context, "/lego-things"),
-            ),
-            Divider(height: 0.0),
-            ListTile(
-              title: Text('Animation Example'),
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AnimationExample(),
-                  )),
-            ),
-            Divider(height: 0.0),
-            ListTile(
-              title: Text('Add To Animation'),
-              onTap: () => router.push(context, "myapp://toys/add_to_cart"),
-            ),
-            Divider(height: 0.0),
-            ListTile(
-              title: Text('Swagger Animation Page'),
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => StaggerDemo(),
-                  )),
-            ),
-            Divider(height: 0.0),
-            ListTile(
-              title: Text('Custom Action Button'),
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CustomActionPage(),
-                  )),
-            ),
-            Divider(height: 0.0),
-            ListTile(
-              title: Text('Coffee Shop App'),
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CoffeeShop(),
-                  )),
-            )
-          ],
-        ),
-        */
       ),
     );
   }
