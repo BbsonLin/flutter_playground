@@ -48,7 +48,12 @@ class PinPadState extends State<PinPad> {
             onInsert: _insert,
             onClear: _clear,
             onRevert: _revert,
-            onComplete: () => widget.onComplete(_input),
+            onComplete: () {
+              widget.onComplete(_input);
+              setState(() {
+                _input = "";
+              });
+            },
           ),
         ],
       ),
