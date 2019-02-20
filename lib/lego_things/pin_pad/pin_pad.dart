@@ -6,6 +6,8 @@ class PinPad extends StatefulWidget {
   final Widget title;
   final EdgeInsetsGeometry padding;
   final bool pinVisible;
+  final Color keyColor;
+  final KeyButtonStyle keyStyle;
   final bool randomKeys;
   final Function(String) onComplete;
 
@@ -14,6 +16,8 @@ class PinPad extends StatefulWidget {
     this.title = const Text("Enter Pin"),
     this.padding,
     this.pinVisible = true,
+    this.keyColor,
+    this.keyStyle = KeyButtonStyle.raised,
     this.randomKeys = true,
     this.onComplete,
   }) : super(key: key);
@@ -45,6 +49,8 @@ class PinPadState extends State<PinPad> {
           ),
           KeyPad(
             numbers: _numberSet,
+            keyButtonColor: widget.keyColor,
+            keyButtonStyle: widget.keyStyle,
             onInsert: _insert,
             onClear: _clear,
             onRevert: _revert,

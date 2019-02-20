@@ -9,6 +9,7 @@ class PinPadExample extends StatelessWidget {
       body: Center(
         child: PinPad(
           padding: EdgeInsets.only(top: 64.0),
+          keyColor: Colors.transparent,
           randomKeys: false,
           onComplete: (pinNumber) {
             Fluttertoast.showToast(msg: "You entered $pinNumber.");

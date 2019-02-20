@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/pages/lego_things/counter.dart';
 import 'package:flutter_playground/pages/lego_things/now_time.dart';
 import 'package:flutter_playground/pages/lego_things/pin_pad.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -43,6 +44,15 @@ class LegoThingsExampleState extends State<LegoThingsExample> {
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                 return PinPadExample();
+              }));
+            },
+          ),
+          ListTile(
+            leading: Icon(FontAwesomeIcons.sortNumericDown),
+            title: Text("Counter"),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return CounterExample();
               }));
             },
           )

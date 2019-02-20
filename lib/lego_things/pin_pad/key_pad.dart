@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 
 class KeyPad extends StatelessWidget {
   final List<int> numbers;
+  final Color keyButtonColor;
+  final KeyButtonStyle keyButtonStyle;
   final Function onInsert, onRevert, onClear, onComplete;
 
   const KeyPad({
     Key key,
     this.numbers,
+    this.keyButtonColor,
+    this.keyButtonStyle,
     this.onInsert,
     this.onRevert,
     this.onClear,
@@ -32,10 +36,11 @@ class KeyPad extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: inputs
-            .map((value) => MaterialButton(
-          child: Text(value.toString()),
-          onPressed: () => onInsert(value.toString()),
-        ))
+            .map((value) => KeyPadButton(
+                  style: keyButtonStyle,
+                  child: Text(value.toString()),
+                  onPressed: () => onInsert(value.toString()),
+                ))
             .toList(),
       ),
     );
@@ -48,16 +53,19 @@ class KeyPad extends StatelessWidget {
         children: <Widget>[
           GestureDetector(
             onLongPress: onClear,
-            child: MaterialButton(
+            child: KeyPadButton(
+              style: keyButtonStyle,
               child: Icon(Icons.backspace),
               onPressed: onRevert,
             ),
           ),
-          MaterialButton(
+          KeyPadButton(
+            style: keyButtonStyle,
             child: Text(numbers.last.toString()),
             onPressed: () => onInsert(numbers.last.toString()),
           ),
-          MaterialButton(
+          KeyPadButton(
+            style: keyButtonStyle,
             child: Icon(Icons.send),
             onPressed: onComplete,
           ),
@@ -66,3 +74,32 @@ class KeyPad extends StatelessWidget {
     );
   }
 }
+
+class KeyPadButton extends StatelessWidget {
+  const KeyPadButton({
+    Key key,
+    this.backgroundColor,
+    this.style,
+    this.child,
+    this.onPressed,
+  }) : super(key: key);
+
+  final Color backgroundColor;
+  final KeyButtonStyle style;
+  final Widget child;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return RawMaterialButton(
+      fillColor: backgroundColor ?? theme.buttonColor,
+      elevation: style == KeyButtonStyle.raised ? 2.0 : 0.0,
+      highlightElevation: style == KeyButtonStyle.raised ? 8.0 : 0.0,
+      child: child,
+      onPressed: onPressed,
+    );
+  }
+}
+
+enum KeyButtonStyle { flat, raised }

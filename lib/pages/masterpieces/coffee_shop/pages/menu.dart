@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_counter/flutter_counter.dart';
+import 'package:flutter_playground/lego_things/counter.dart';
 import 'package:flutter_playground/pages/masterpieces/coffee_shop/state_container.dart';
 
 class MenuPage extends StatefulWidget {
