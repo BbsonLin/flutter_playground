@@ -14,8 +14,13 @@ void main() {
   Logger.root.onRecord.listen((LogRecord rec) {
     print('${rec.level.name}: ${rec.time}: ${rec.message}');
   });
-  runApp(
-    MaterialApp(
+  runApp(MainApp());
+}
+
+class MainApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Playground',
       theme: ThemeData(
@@ -27,8 +32,8 @@ void main() {
         PlaygroundRoutes.toys: (context) => ToysPage(),
         PlaygroundRoutes.masterpieces: (context) => MasterpiecesPage(),
       },
-    ),
-  );
+    );
+  }
 }
 
 class HomePage extends StatelessWidget {
