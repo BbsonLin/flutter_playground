@@ -43,7 +43,7 @@ class ToysPageState extends State<ToysPage> {
                         }),
                       );
                     },
-                  )
+                  ),
                 ],
               ),
             ),

@@ -13,17 +13,21 @@ class CounterExampleState extends State<CounterExample> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Counter(
-          initialValue: count,
-          minValue: 0,
-          maxValue: 10,
-          onChanged: (value) {
-            setState(() {
-              count = value;
-            });
-          },
+    return Theme(
+      data: ThemeData(primaryColor: Colors.blue),
+      child: Scaffold(
+        appBar: AppBar(title: Text("Counter Example"),),
+        body: Center(
+          child: Counter(
+            initialValue: count,
+            minValue: 0,
+            maxValue: 10,
+            onChanged: (value) {
+              setState(() {
+                count = value;
+              });
+            },
+          ),
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/pages/lego_things/count_down_timer.dart';
 import 'package:flutter_playground/pages/lego_things/counter.dart';
 import 'package:flutter_playground/pages/lego_things/now_time.dart';
 import 'package:flutter_playground/pages/lego_things/pin_pad.dart';
@@ -14,11 +15,9 @@ class LegoThingsExample extends StatefulWidget {
 class LegoThingsExampleState extends State<LegoThingsExample> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: _buildScaffold(context),
-      theme: ThemeData(
-       primaryColor: Colors.blue
-      ),
+    return Theme(
+      data: ThemeData(primaryColor: Colors.blue),
+      child: _buildScaffold(context),
     );
   }
 
@@ -53,6 +52,15 @@ class LegoThingsExampleState extends State<LegoThingsExample> {
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                 return CounterExample();
+              }));
+            },
+          ),
+          ListTile(
+            leading: Icon(FontAwesomeIcons.stopwatch),
+            title: Text("Count Down Timer"),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return CountDownTimerExample();
               }));
             },
           )

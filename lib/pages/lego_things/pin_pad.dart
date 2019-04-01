@@ -6,6 +6,7 @@ class PinPadExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text("PinPad Example"),),
       body: Center(
         child: PinPad(
           padding: EdgeInsets.only(top: 64.0),
