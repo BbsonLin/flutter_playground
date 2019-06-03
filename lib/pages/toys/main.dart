@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/pages/toys/ad_player.dart';
 import 'package:flutter_playground/pages/toys/layout_stuff.dart';
+import 'package:flutter_playground/pages/toys/socketio_thing.dart';
+import 'package:flutter_playground/pages/toys/video_playing.dart';
 
 class ToysPage extends StatefulWidget {
   @override
@@ -40,6 +43,17 @@ class ToysPageState extends State<ToysPage> {
                         MaterialPageRoute(builder: (context) {
                           print(context);
                           return LayoutStuff();
+                        }),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    title: Text("Socketio Thing"),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) {
+                          return SocketioThing();
                         }),
                       );
                     },
