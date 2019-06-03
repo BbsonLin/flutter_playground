@@ -1,0 +1,15 @@
+{
+  "commonUse": {
+    "cancel": "取消",
+    "confirm": "确认"
+  },
+  "homePage": {
+    "title": "Flutter 游乐场",
+    "legoThings": "乐高",
+    "toys": "玩具",
+    "masterpieces": "杰作",
+    "languageSettings": {
+      "title": "语言设定"
+    }
+  }
+}

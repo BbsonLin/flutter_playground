@@ -1,0 +1,15 @@
+{
+  "commonUse": {
+    "cancel": "cancel",
+    "confirm": "confirm"
+  },
+  "homePage": {
+    "title": "Flutter Playground",
+    "legoThings": "Lego Things",
+    "toys": "Toys",
+    "masterpieces": "Masterpieces",
+    "languageSettings": {
+      "title": "Language Settings"
+    }
+  }
+}
