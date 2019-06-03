@@ -58,6 +58,28 @@ class ToysPageState extends State<ToysPage> {
                       );
                     },
                   ),
+                  ListTile(
+                    title: Text("Ad Player"),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) {
+                          return AdPlayer();
+                        }),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    title: Text("Video Playing"),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) {
+                          return VideoPlaying();
+                        }),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

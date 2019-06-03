@@ -31,6 +31,8 @@ dependencies:
   countdown: ^0.1.0
   flutter_i18n: ^0.6.3
   socket_io_client: ^0.9.4
+  video_player: ^0.10.0+4
+  chewie: ^0.9.7
 
 dev_dependencies:
   flutter_test:
