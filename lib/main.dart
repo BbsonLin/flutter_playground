@@ -24,7 +24,7 @@ void main() {
 
   Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen((LogRecord rec) async {
-    print('${rec.level.name}: ${rec.time}: ${rec.message}');
+    print('${rec.level.name}: (${rec.loggerName}) ${rec.time}: ${rec.message}');
 
     var logFile = File("/data/data/com.example.flutterplayground/app.log");
     var sink = logFile.openWrite(mode: FileMode.append);

@@ -33,6 +33,7 @@ dependencies:
   socket_io_client: ^0.9.4
   video_player: ^0.10.0+4
   chewie: ^0.9.7
+  mime: ^0.9.6+3
 
 dev_dependencies:
   flutter_test:

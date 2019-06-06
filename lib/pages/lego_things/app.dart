@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/pages/lego_things/ad_player.dart';
 import 'package:flutter_playground/pages/lego_things/count_down_timer.dart';
 import 'package:flutter_playground/pages/lego_things/counter.dart';
 import 'package:flutter_playground/pages/lego_things/now_time.dart';
@@ -61,6 +62,15 @@ class LegoThingsExampleState extends State<LegoThingsExample> {
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                 return CountDownTimerExample();
+              }));
+            },
+          ),
+          ListTile(
+            leading: Icon(FontAwesomeIcons.playCircle),
+            title: Text("Ad Player"),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return AdPlayerExample();
               }));
             },
           )
