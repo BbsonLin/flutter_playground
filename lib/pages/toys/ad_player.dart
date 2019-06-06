@@ -6,7 +6,7 @@ import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
-Logger log = Logger("AdPlayer");
+Logger log = Logger("Toys/AdPlayer");
 
 /// Suggested by Brownsoo Han
 /// https://stackoverflow.com/questions/55466602/how-to-play-a-list-of-video-in-flutter?answertab=active#tab-top
@@ -17,11 +17,14 @@ class AdPlayer extends StatefulWidget {
 
 class _AdPlayerState extends State<AdPlayer> {
   List _playList = [
-    // "https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4",
-    // "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
-    "http://localhost:5000/file?name=304.mp4",
-    "http://localhost:5000/file?name=sample.mp4",
-    "http://localhost:5000/file?name=sample2.mp4"
+    "https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4",
+    "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
+    "http://176.122.189.197:8001/sample.mp4",
+    "http://176.122.189.197:8001/sample2.mp4",
+    "http://176.122.189.197:8001/304.mp4"
+    // "http://localhost:5000/file?name=304.mp4",
+    // "http://localhost:5000/file?name=sample.mp4",
+    // "http://localhost:5000/file?name=sample2.mp4"
   ];
 
   VideoPlayerController _controller;
