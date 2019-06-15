@@ -23,6 +23,7 @@ class _AdPlayerState extends State<AdPlayer> {
   bool _disposed = false;
   bool _isPlaying = false;
   bool _isEndPlaying = false;
+  bool _prepareNextPlaying = false;
 
   @override
   void dispose() {
@@ -80,7 +81,8 @@ class _AdPlayerState extends State<AdPlayer> {
 
   Future<dynamic> _initializeAd() {
     _playingMimeType = lookupMimeType(widget.playList[_playingIndex]);
-    log.fine("Now playingIndex: $_playingIndex, playingMimeType: $_playingMimeType");
+    log.fine(
+        "Now playingIndex: $_playingIndex, playingMimeType: $_playingMimeType");
     if (_playingMimeType.contains("video")) {
       _videoController =
           VideoPlayerController.network(widget.playList[_playingIndex]);
@@ -106,21 +108,25 @@ class _AdPlayerState extends State<AdPlayer> {
 
     final position = await _videoController.position;
     final duration = _videoController.value.duration;
-    final isPlaying = position.inMilliseconds < duration.inMilliseconds;
+    final isPlaying = position.inMicroseconds < duration.inMicroseconds;
+    final overPlaying = position.inMicroseconds > duration.inMicroseconds;
     final isEndPlaying =
         position.inMilliseconds > 0 && position.inSeconds == duration.inSeconds;
 
-    if (_isPlaying != isPlaying || _isEndPlaying != isEndPlaying) {
+    // 需另外判斷 overPlaying 和 _prepareNextPlaying，以防跳過下一個播放的 video
+    if ((_isPlaying != isPlaying && !overPlaying && !_prepareNextPlaying) || _isEndPlaying != isEndPlaying) {
       _isPlaying = isPlaying;
       _isEndPlaying = isEndPlaying;
-      log.fine(
+      log.info("position: $position, duration: $duration");
+      log.info(
           "$_playingIndex -----> isPlaying=$isPlaying / isCompletePlaying=$isEndPlaying");
       if (isEndPlaying) {
         // final isComplete = _playingIndex == _playList.length - 1;
         bool isComplete = false;
         if (isComplete) {
-          log.fine("played all!!");
+          log.info("played all!!");
         } else {
+          _prepareNextPlaying = true;
           _nextPlay();
         }
       }
@@ -135,6 +141,7 @@ class _AdPlayerState extends State<AdPlayer> {
       _playingIndex = (_playingIndex + 1) % widget.playList.length;
       log.fine("nextPlayIndex: $_playingIndex");
     });
+    _prepareNextPlaying = false;
   }
 
   Future<bool> _clearPrevious() async {

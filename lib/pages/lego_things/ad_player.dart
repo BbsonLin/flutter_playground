@@ -9,12 +9,18 @@ class AdPlayerExample extends StatelessWidget {
       body: Center(
         child: AdPlayer(
           playList: [
-            "https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4",
-            "http://176.122.189.197:8001/UCCU.jpg",
-            "http://176.122.189.197:8001/%E8%88%89%E5%80%8B%E6%A0%97%E5%AD%90.jpeg",
-            "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
-            "http://176.122.189.197:8001/%E9%BB%91%E4%BA%BA%E5%95%8F%E8%99%9F.gif",
+            "http://192.168.1.104:5000/file?name=DAOKO.mp4",
+            "http://192.168.1.104:5000/file?name=SampleVideo10mb.mp4",
+            "http://192.168.1.104:5000/file?name=Fish.mp4",
+            "http://192.168.1.104:5000/file?name=AngelaAki.mp4"
           ],
+          // playList: [
+          //   "https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4",
+          //   "http://176.122.189.197:8001/UCCU.jpg",
+          //   "http://176.122.189.197:8001/%E8%88%89%E5%80%8B%E6%A0%97%E5%AD%90.jpeg",
+          //   "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
+          //   "http://176.122.189.197:8001/%E9%BB%91%E4%BA%BA%E5%95%8F%E8%99%9F.gif",
+          // ],
         ),
       ),
     );
