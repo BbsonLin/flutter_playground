@@ -20,14 +20,9 @@ class _AdPlayerState extends State<AdPlayer> {
   VideoPlayerController _videoController;
   int _playingIndex = 0;
   String _playingMimeType = "";
-  bool _disposed = false;
-  bool _isPlaying = false;
-  bool _isEndPlaying = false;
-  bool _prepareNextPlaying = false;
 
   @override
   void dispose() {
-    _disposed = true;
     // In my case, sound is playing though controller was disposed.
     _videoController?.pause()?.then((_) {
       // dispose VideoPlayerController.
@@ -98,38 +93,11 @@ class _AdPlayerState extends State<AdPlayer> {
   }
 
   Future<void> _videoListener() async {
-    if (_videoController == null || _disposed) {
-      return null;
-    }
-
-    if (!_videoController.value.initialized) {
-      return null;
-    }
-
-    final position = await _videoController.position;
-    final duration = _videoController.value.duration;
-    final isPlaying = position.inMicroseconds < duration.inMicroseconds;
-    final overPlaying = position.inMicroseconds > duration.inMicroseconds;
-    final isEndPlaying =
-        position.inMilliseconds > 0 && position.inSeconds == duration.inSeconds;
-
-    // 需另外判斷 overPlaying 和 _prepareNextPlaying，以防跳過下一個播放的 video
-    if ((_isPlaying != isPlaying && !overPlaying && !_prepareNextPlaying) || _isEndPlaying != isEndPlaying) {
-      _isPlaying = isPlaying;
-      _isEndPlaying = isEndPlaying;
-      log.info("position: $position, duration: $duration");
-      log.info(
-          "$_playingIndex -----> isPlaying=$isPlaying / isCompletePlaying=$isEndPlaying");
-      if (isEndPlaying) {
-        // final isComplete = _playingIndex == _playList.length - 1;
-        bool isComplete = false;
-        if (isComplete) {
-          log.info("played all!!");
-        } else {
-          _prepareNextPlaying = true;
-          _nextPlay();
-        }
-      }
+    int pos = _videoController.value.position.inMilliseconds;
+    int dur = _videoController.value.duration.inMilliseconds;
+    if (dur - pos < 1) {
+      log.fine("position: $pos, duration: $dur");
+      _nextPlay();
     }
   }
 
@@ -141,11 +109,10 @@ class _AdPlayerState extends State<AdPlayer> {
       _playingIndex = (_playingIndex + 1) % widget.playList.length;
       log.fine("nextPlayIndex: $_playingIndex");
     });
-    _prepareNextPlaying = false;
   }
 
   Future<bool> _clearPrevious() async {
-    await _videoController?.pause();
+    await _videoController?.seekTo(Duration(milliseconds: 0));
     _videoController?.removeListener(_videoListener);
     _videoController?.dispose();
     return true;
