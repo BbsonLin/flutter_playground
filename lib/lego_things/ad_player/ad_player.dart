@@ -57,9 +57,11 @@ class _AdPlayerState extends State<AdPlayer> {
                 child: VideoPlayer(_videoController),
               );
             } else if (_playingMimeType.contains("image")) {
-              Future.delayed(Duration(seconds: 10), () {
-                _nextPlay();
-              });
+              if (widget.playList.length > 1) {
+                Future.delayed(Duration(seconds: 10), () {
+                  _nextPlay();
+                });
+              }
               return AspectRatio(
                 aspectRatio: 1.0,
                 child: Image.network(widget.playList[_playingIndex]),
@@ -82,6 +84,7 @@ class _AdPlayerState extends State<AdPlayer> {
       _videoController =
           VideoPlayerController.network(widget.playList[_playingIndex]);
       _videoController.addListener(_videoListener);
+      if (widget.playList.length == 1) _videoController.setLooping(true);
       return _videoController.initialize();
     } else if (_playingMimeType.contains("image")) {
       return Future.delayed(Duration(milliseconds: 0), () {
@@ -95,7 +98,7 @@ class _AdPlayerState extends State<AdPlayer> {
   Future<void> _videoListener() async {
     int pos = _videoController.value.position.inMilliseconds;
     int dur = _videoController.value.duration.inMilliseconds;
-    if (dur - pos < 1) {
+    if (widget.playList.length > 1 && dur - pos < 1) {
       log.fine("position: $pos, duration: $dur");
       _nextPlay();
     }

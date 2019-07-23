@@ -2,7 +2,11 @@ kind: pipeline
 name: testing
 
 steps:
-- name: flutter
-  image: appleboy/flutter-docker:1.0.0
+- name: run flutter test
+  pull: always
+  image: appleboy/flutter-docker:1.2.1
   commands:
-  - flutter test
+    - flutter channel stable
+    - flutter upgrade
+    - flutter packages pub get
+    - flutter test test/*
