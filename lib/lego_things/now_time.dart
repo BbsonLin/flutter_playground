@@ -4,6 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class NowTime extends StatefulWidget {
+  final TextStyle textStyle;
+
+  NowTime({
+    this.textStyle
+  });
+
   @override
   NowTimeState createState() => NowTimeState();
 }
@@ -34,7 +40,7 @@ class NowTimeState extends State<NowTime> {
         _timeString,
         textAlign: TextAlign.center,
         softWrap: false,
-        style: Theme.of(context).primaryTextTheme.subhead,
+        style: widget.textStyle ?? Theme.of(context).primaryTextTheme.subhead,
       ),
     );
   }
